@@ -1,13 +1,13 @@
 # Elm compiler issue
 
-any *port* module in Elm has a dependency to Json.Decode has it uses decoders specified in that module for js-elm communications.
+any **port** module in Elm has a dependency to `Json.Decode` as it uses decoders specified in that module for js-elm communications.
 
 So if the project's port module has:
 
 * Name beginning with a letter before J, and
 * does not have a declared dependency on Json.Decode
 
-Then the elm compiler will emit port module code before Json.Decode causing all decoders to be undefined. This results in all user defined incoming ports to stop throw exceptions.
+Then the elm compiler will emit the port module code before `Json.Decode` which causes all decoders to be `Undefined`. This results in all user defined incoming ports to stop throw exceptions.
 
 # SSCCE Summary
 * This SSCCE sends a string ("hi Elm! been a long time!") on init.
@@ -24,10 +24,11 @@ npm install && elm package install
 npm start
 ```
 
-Navigate to http://localhost:8080/ and open the console. you should see the error `Uncaught TypeError: Cannot read property 'tag' of undefined` show up.
+Navigate to `http://localhost:8080/` and open the console. you should see the error `Uncaught TypeError: Cannot read property 'tag' of undefined` show up.
 
 # Hackish solution
 simply add this line in the imports of port module. 
+
 `import Json.Decode exposing (..)`
 
 # structure
