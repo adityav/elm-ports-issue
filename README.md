@@ -1,4 +1,4 @@
-# Elm compiler issue
+# Elm Ports issue
 
 any **port** module in Elm has a dependency to `Json.Decode` as it uses decoders specified in that module for js-elm communications.
 
